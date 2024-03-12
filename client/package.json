@@ -1,4 +1,7 @@
 {
+  "homepage": "https://<your-github-username>.github.io/<your-repository-name>/",
+
+
   "name": "client",
   "private": true,
   "version": "0.0.0",
