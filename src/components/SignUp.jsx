@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { LuEye } from "react-icons/lu";
+import { LuEyeOff } from "react-icons/lu";
+
 
 export default function SignUp() {
 
   const [errorMessage, setErrorMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
 
   const handleSubmit = (event) => {
@@ -31,13 +36,16 @@ export default function SignUp() {
     
       existingData.push(formDataObject);
 
-    
       localStorage.setItem('formDataArray', JSON.stringify(existingData));
 
       console.log('Form data saved to localStorage.');
       alert("Your information has been submitted!");
     }
   };
+    const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -93,7 +101,7 @@ export default function SignUp() {
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <label
               htmlFor="password"
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -101,13 +109,21 @@ export default function SignUp() {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               name="password"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               autoComplete="new-password"
+              minLength={8}
               required
             />
+                        <button
+              type="button"
+              onClick={toggleShowPassword}
+              className="absolute  right-0 px-3 py-2  "
+            >
+              {showPassword ? <LuEye /> : <LuEyeOff/>}
+            </button>
           </div>
                     {errorMessage && <p className="text-red-500">{errorMessage}</p>}
 
@@ -121,9 +137,11 @@ export default function SignUp() {
         <div className="mt-4">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <a href="/" className="text-blue-500 hover:underline">
+            
+            <Link to="/" className="text-blue-500 hover:underline">
               Sign In
-            </a>
+            </Link>
+
           </p>
         </div>
       </div>
