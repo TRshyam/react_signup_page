@@ -10,8 +10,19 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
 
 
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+
+    if (!passwordRegex.test(password)) {
+      setErrorMessage(
+        'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one special character, and one number.'
+      );
+      return;
+    }
 
     const data = new FormData(event.currentTarget);
     console.log(data);
@@ -96,7 +107,7 @@ export default function SignUp() {
               type="email"
               id="email"
               name="email"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               autoComplete="email"
               required
             />
@@ -114,7 +125,7 @@ export default function SignUp() {
               name="password"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               autoComplete="new-password"
-              minLength={8}
+            
               required
             />
                         <button
@@ -125,11 +136,11 @@ export default function SignUp() {
               {showPassword ? <LuEye /> : <LuEyeOff/>}
             </button>
           </div>
-                    {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
 
           <button
             type="submit"
-            className="bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 text-white font-bold py-2 px-4 mt-5 rounded focus:outline-none focus:shadow-outline"
           >
             Sign Up
           </button>

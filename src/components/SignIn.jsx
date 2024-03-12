@@ -94,7 +94,7 @@ export default function SignIn() {
             <button
               type="button"
               onClick={toggleShowPassword}
-              className="absolute inset-y-0 right-0 px-3 py-2 focus:outline-none"
+              className="absolute  right-0 px-3 py-2 focus:outline-none"
             >
                {showPassword ? <LuEye /> : <LuEyeOff/>}
             </button>
@@ -109,7 +109,7 @@ export default function SignIn() {
               <span className="text-sm">Remember me</span>
             </label>
           </div>
-                              {error && <p className="text-red-500 mb-4">{error}</p>}
+            {error && <p className="text-sm text-red-500 mb-4">{error}</p>}
 
           <button
             type="submit"
